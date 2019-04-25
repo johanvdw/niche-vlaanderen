@@ -20,6 +20,7 @@ environment:
 
 install:
     # Use the pre-installed Miniconda for the desired arch
+    - set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
     - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
     - conda update -y -q conda
     - conda config --system --add pinned_packages defaults::conda
