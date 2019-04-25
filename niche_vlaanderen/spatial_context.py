@@ -41,7 +41,7 @@ class SpatialContext(object):
         # only occurs on Python 2
         if dst.crs is None:  # pragma: no cover
             self.crs = ""
-        elif isinstance(dst.crs, str):
+        elif isinstance(dst.crs, str) or isinstance(dst.crs, unicode):
             self.crs = dst.crs
         else:
             self.crs = dst.crs.to_string()
