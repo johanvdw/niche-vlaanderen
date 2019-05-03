@@ -22,6 +22,8 @@ install:
     # Use the pre-installed Miniconda for the desired arch
     - call %MINICONDA%\Scripts\activate.bat
     - conda update -y -q conda
+      # restore conda links https://github.com/conda/conda/issues/7144
+    - mklink /J C:\Miniconda3-x64 %MINICONDA%
     - conda config --system --add pinned_packages defaults::conda
     - conda create --name niche_env -y -q python=%PYTHON_VERSION%
     - activate niche_env
