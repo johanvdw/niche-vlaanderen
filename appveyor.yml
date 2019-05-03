@@ -20,10 +20,9 @@ environment:
 
 install:
     # Use the pre-installed Miniconda for the desired arch
-    - call %MINICONDA%\Scripts\activate.bat
+    - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%" 
     - conda update -y -q conda
       # restore conda links https://github.com/conda/conda/issues/7144
-    - conda config --system --add pinned_packages defaults::conda
     - conda create --name niche_env -y -q python=%PYTHON_VERSION%
     - activate niche_env
     - conda config --add channels conda-forge
@@ -41,8 +40,8 @@ test_script:
     - pytest --verbose --tb=long
 
 # uncomment to debug appveyor (login to vm)
-init:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+# init:
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+# 
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
