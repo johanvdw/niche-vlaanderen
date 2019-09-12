@@ -162,7 +162,7 @@ class Niche(object):
         url = 'https://pypi.python.org/pypi/niche_vlaanderen/json'
         try:
             with urlopen(url, timeout=5) as response:
-                json_response = json.loads(response.read())
+                json_response = json.loads(response.read().decode('utf-8'))
                 releases = json_response['releases']
                 v = sorted(releases, key=parse_version, reverse=True)
                 last = v[0]
